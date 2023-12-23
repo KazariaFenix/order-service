@@ -9,14 +9,14 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "Orders")
+@Table(name = "orders")
 @Data
 public class Order {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "orderId")
-  private long order;
+  @Column(name = "order_id")
+  private long orderId;
 
 
 
