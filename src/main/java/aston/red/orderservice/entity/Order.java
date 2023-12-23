@@ -5,30 +5,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "OrderGoods")
+@Table(name = "Orders")
 @Data
-public class OrderGoodsEntity {
-
+public class Order {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  @Column(name = "orderId")
+  private long order;
 
-  @Column(name = "good_name")
-  private String good_name;
 
-  @Column(name = "quantity")
-  private Integer quantity;
-
-  
-  @ManyToOne
-  @JoinColumn(name = "orderId")
-  private Order order;
 
 }
