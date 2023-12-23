@@ -15,6 +15,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigInteger;
+
 
 @Getter
 @Setter
@@ -28,13 +30,25 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private BigInteger id;
 
-    @Column(name = "user_address")
+    @Column(name = "user_address", nullable = false)
     private String userAddress;
 
-    @Column(name = "is_paid")
-    private Boolean isPaid;
+    @Column(name = "paid")
+    private boolean paid;
+
+    @Column(name = "total")
+    private BigInteger total;
+
+    @Column(name = "shop_id", nullable = false)
+    private BigInteger shopId;
+
+    @Column(name = "user_id", nullable = false)
+    private BigInteger userId;
+
+    @Column(name = "delivery")
+    private boolean delivery;
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrderGoods> orderGoods;
