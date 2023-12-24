@@ -17,16 +17,17 @@ public class OrderGoodsEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "good_name")
-  private String good_name;
+  @Column(name = "good_id")
+  private Long goodName;
 
   @Column(name = "quantity")
-  private Integer quantity;
+  private Long quantity;
   
   @ManyToOne
-  @JoinColumn(name = "id")
-  private Order orderId;
+  @JoinColumn(name = "order_id")
+  private Order order;
 
 }
