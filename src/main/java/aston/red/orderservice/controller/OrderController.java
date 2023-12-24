@@ -13,6 +13,6 @@ public class OrderController {
 
     @GetMapping
     public void payedOrder(Long orderId) {
-        
+
     }
 }

@@ -15,7 +15,6 @@ import lombok.Data;
 @Data
 public class OrderGoodsEntity {
 
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -25,7 +24,6 @@ public class OrderGoodsEntity {
 
   @Column(name = "quantity")
   private Integer quantity;
-
   
   @ManyToOne
   @JoinColumn(name = "id")
