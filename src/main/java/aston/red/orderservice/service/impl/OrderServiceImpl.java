@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
 
     @Override
-    public void addDeliveryOrder(long orderId) {
+    public void postDeliveryOrder(long orderId) {
         Order order = repository.findById(orderId).orElseThrow(IllegalArgumentException::new); // добавить собственное исключение
         OrderDto orderDto = orderMapper.toOrderDto(order);
 
