@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("/order")
 @AllArgsConstructor
 public class OrderController {
 
     private final OrderService service;
 
-    @PostMapping("/order")
+    @PostMapping("/{orderId}")
     public void payedOrder(@RequestParam Long orderId) {
-        service.addDeliveryOrder(orderId);
+        service.postDeliveryOrder(orderId);
     }
 }

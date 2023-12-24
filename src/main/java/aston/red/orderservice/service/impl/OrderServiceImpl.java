@@ -23,7 +23,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
 
     public void postDeliveryOrder(long orderId) {
-        Order order = repository.findById(orderId).orElseThrow(OrderNotFoundException(String.valueOf(orderId))::new); // добавить собственное исключение
+        Order order = repository.findById(orderId).orElseThrow(
+                () -> new OrderNotFoundException(String.valueOf(orderId)));
         OrderDto orderDto = orderMapper.toOrderDto(order);
 
         orderDto.setShop(storeFeign.getById(order.getShopId()));

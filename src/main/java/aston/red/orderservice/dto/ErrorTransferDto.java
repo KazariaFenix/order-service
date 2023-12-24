@@ -8,6 +8,5 @@ import lombok.Data;
 public class ErrorTransferDto {
 
     private Integer errorCode;
-
     private String errorMessage;
 }
