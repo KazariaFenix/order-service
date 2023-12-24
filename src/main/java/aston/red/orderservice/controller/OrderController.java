@@ -3,6 +3,7 @@ package aston.red.orderservice.controller;
 import aston.red.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -12,7 +13,7 @@ public class OrderController {
     private OrderService service;
 
     @GetMapping
-    public void payedOrder(Long orderId) {
+    public void payedOrder(@RequestParam("orderId") Long orderId) {
         service.addDeliveryOrder(orderId);
     }
 }
