@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface DeliveryFeign {
 
     @PostMapping("/order")
-    boolean getOrderDto(@RequestBody OrderDto dto);
+    void getOrderDto(@RequestBody OrderDto dto);
 }

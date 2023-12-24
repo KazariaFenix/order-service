@@ -2,18 +2,20 @@ package aston.red.orderservice.controller;
 
 import aston.red.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping
 @AllArgsConstructor
 public class OrderController {
 
-    private OrderService service;
+    private final OrderService service;
 
-    @GetMapping
-    public void payedOrder(@RequestParam("orderId") Long orderId) {
+    @PostMapping("/order")
+    public void payedOrder(@RequestParam Long orderId) {
         service.addDeliveryOrder(orderId);
     }
 }
