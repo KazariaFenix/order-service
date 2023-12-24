@@ -30,7 +30,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private BigInteger id;
+    private Long id;
 
     @Column(name = "user_address", nullable = false)
     private String userAddress;
@@ -39,13 +39,13 @@ public class Order {
     private boolean paid;
 
     @Column(name = "total")
-    private BigInteger total;
+    private Long total;
 
     @Column(name = "shop_id", nullable = false)
-    private BigInteger shopId;
+    private Long shopId;
 
     @Column(name = "user_id", nullable = false)
-    private BigInteger userId;
+    private Long userId;
 
     @Column(name = "delivery")
     private boolean delivery;
