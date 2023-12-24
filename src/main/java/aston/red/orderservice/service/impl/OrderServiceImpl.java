@@ -20,11 +20,11 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
 
     @Override
-    public boolean addDeliveryOrder(long orderId) {
-        Order order = repository.findById(orderId).orElseThrow(() -> new IllegalArgumentException()); // добавить собственное исключение
+    public void postDeliveryOrder(long orderId) {
+        Order order = repository.findById(orderId).orElseThrow(IllegalArgumentException::new); // добавить собственное исключение
         OrderDto orderDto = orderMapper.toOrderDto(order);
 
         orderDto.setShop(storeFeign.getById(order.getShopId()));
-        return deliveryFeign.getOrderDto(orderDto);
+        deliveryFeign.getOrderDto(orderDto);
     }
 }
