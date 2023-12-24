@@ -2,7 +2,6 @@ package aston.red.orderservice.feign;
 
 import aston.red.orderservice.dto.OrderDto;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -10,5 +9,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface DeliveryFeign {
 
     @PostMapping("/order")
-    public ResponseEntity<?> getOrderDto(@RequestBody OrderDto dto);
+    boolean getOrderDto(@RequestBody OrderDto dto);
 }

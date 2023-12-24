@@ -1,6 +1,6 @@
 package aston.red.orderservice.controller;
 
-import aston.red.orderservice.service.OrdersGoodsService;
+import aston.red.orderservice.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class OrderController {
 
-    private OrdersGoodsService service;
+    private OrderService service;
 
     @GetMapping
     public void payedOrder(Long orderId) {
-
+        service.addDeliveryOrder(orderId);
     }
 }

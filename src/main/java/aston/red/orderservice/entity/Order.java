@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class Order {
   @Column(name = "delivery")
   private boolean delivery;
 
-  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @Fetch(value = FetchMode.SUBSELECT)
   private List<OrderGoodsEntity> orderGoods;
 }

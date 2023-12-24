@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)
 public class OrderDto {
     private Long id;
     private String tgChatIdClient;

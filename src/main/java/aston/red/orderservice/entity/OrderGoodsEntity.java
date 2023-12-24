@@ -21,7 +21,10 @@ public class OrderGoodsEntity {
   private Long id;
 
   @Column(name = "good_id")
-  private Long goodName;
+  private Long goodId;
+
+  @Column(name = "good_name")
+  private String goodName;
 
   @Column(name = "quantity")
   private Long quantity;
