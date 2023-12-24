@@ -2,6 +2,7 @@ package aston.red.orderservice.service.impl;
 
 import aston.red.orderservice.dto.OrderDto;
 import aston.red.orderservice.entity.Order;
+import aston.red.orderservice.exception.OrderNotFoundException;
 import aston.red.orderservice.feign.DeliveryFeign;
 import aston.red.orderservice.feign.StoreFeign;
 import aston.red.orderservice.mapper.OrderMapper;
@@ -20,8 +21,9 @@ public class OrderServiceImpl implements OrderService {
     private final OrderMapper orderMapper;
 
     @Override
+
     public void postDeliveryOrder(long orderId) {
-        Order order = repository.findById(orderId).orElseThrow(IllegalArgumentException::new); // добавить собственное исключение
+        Order order = repository.findById(orderId).orElseThrow(OrderNotFoundException(String.valueOf(orderId))::new); // добавить собственное исключение
         OrderDto orderDto = orderMapper.toOrderDto(order);
 
         orderDto.setShop(storeFeign.getById(order.getShopId()));
