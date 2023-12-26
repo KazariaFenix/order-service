@@ -4,15 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder(toBuilder = true)
 @AllArgsConstructor
 public class OrderGoodsDto {
 
-  private Long id;
-  private String goodName;
-  private Long goodId;
-  private Integer quantity;
-  private Long orderId;
+    private Long shopId;
+    private Long userId;
+    private List<ProductDtoWithQuantity> products;
+    private String userAddress;
 
 }
