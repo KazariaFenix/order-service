@@ -11,4 +11,6 @@ public interface OrderService {
     Order saveOrder(OrderGoodsDto orderGoodsDto);
 
     OrderPreparedToPayDto processOrder(OrderGoodsDto orderGoodsDto);
+
+    void confirmationDelivery(long orderId);
 }
