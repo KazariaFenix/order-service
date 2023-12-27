@@ -1,6 +1,7 @@
 package aston.red.orderservice.mapper;
 
 import aston.red.orderservice.dto.GoodDto;
+import aston.red.orderservice.dto.OrdersGoodsShortsDto;
 import aston.red.orderservice.entity.OrderGoodsEntity;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
@@ -9,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class GoodMapperTest {
 
@@ -22,5 +26,16 @@ public class GoodMapperTest {
         GoodDto goodDto = goodMapper.toGoodDto(entity);
 
         assertEquals(entity.getGoodName(), goodDto.getName());
+    }
+
+    @Test
+    public void testToOrdersGoodsShortsDtoMapping() {
+        OrderGoodsEntity orderGoodsEntity = new OrderGoodsEntity();
+        orderGoodsEntity.setGoodId(123L);
+
+        OrdersGoodsShortsDto ordersGoodsShortsDto = goodMapper.toOrdersGoodsShortsDto(orderGoodsEntity);
+
+        assertNotNull(ordersGoodsShortsDto);
+        assertEquals(orderGoodsEntity.getGoodId(), ordersGoodsShortsDto.getGoodId());
     }
 }

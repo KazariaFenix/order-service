@@ -3,6 +3,7 @@ package aston.red.orderservice.controller;
 import aston.red.orderservice.dto.OrderGoodsDto;
 import aston.red.orderservice.dto.OrderPreparedToPayDto;
 import aston.red.orderservice.service.OrderService;
+import aston.red.orderservice.service.OrdersGoodsService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,12 +27,12 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 public class OrderControllerTests {
     private MockMvc mockMvc;
-
-    @Mock
-    private OrderService orderService;
-
     @InjectMocks
     private OrderController orderController;
+    @Mock
+    private OrdersGoodsService goodsService;
+    @Mock
+    private OrderService orderService;
 
     @BeforeEach
     void setUp() {
@@ -44,11 +45,14 @@ public class OrderControllerTests {
         Long orderId = 123L;
 
         mockMvc.perform(post("/order/{orderId}", orderId)
-                        .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .param("orderId", String.valueOf(orderId))
+                )
                 .andExpect(status().isOk())
                 .andDo(print());
 
         verify(orderService).postDeliveryOrder(orderId);
+        verify(goodsService).patchOrdersGoodsShortsDtoByOrderId(orderId);
     }
 
     @Test
