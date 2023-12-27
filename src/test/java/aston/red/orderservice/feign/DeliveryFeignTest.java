@@ -24,12 +24,12 @@ public class DeliveryFeignTest {
                 .id(orderId)
                 .build();
 
-        deliveryFeign.getOrderDto(orderDto);
+        deliveryFeign.postOrderDto(orderDto);
 
-        verify(deliveryFeign, Mockito.times(1)).getOrderDto(Mockito.any());
+        verify(deliveryFeign, Mockito.times(1)).postOrderDto(Mockito.any());
 
         ArgumentCaptor<OrderDto> orderDtoCaptor = ArgumentCaptor.forClass(OrderDto.class);
-        verify(deliveryFeign).getOrderDto(orderDtoCaptor.capture());
+        verify(deliveryFeign).postOrderDto(orderDtoCaptor.capture());
 
         assertNotNull(orderDtoCaptor.getValue());
     }

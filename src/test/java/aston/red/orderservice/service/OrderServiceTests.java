@@ -62,7 +62,7 @@ public class OrderServiceTests {
 
         verify(repository, times(1)).findById(orderId);
         verify(storeFeign, times(1)).getById(shopId);
-        verify(deliveryFeign, times(1)).getOrderDto(orderDto);
+        verify(deliveryFeign, times(1)).postOrderDto(orderDto);
     }
 
     @Test
