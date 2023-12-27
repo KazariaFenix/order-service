@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
         OrderDto orderDto = orderMapper.toOrderDto(order);
 
         orderDto.setShop(storeFeign.getById(order.getShopId()));
-        deliveryFeign.getOrderDto(orderDto);
+        deliveryFeign.postOrderDto(orderDto);
         repository.setPaid(orderId);
     }
 
