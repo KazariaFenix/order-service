@@ -6,18 +6,27 @@ import aston.red.orderservice.dto.ProductDtoWithQuantity;
 import aston.red.orderservice.entity.Order;
 import aston.red.orderservice.entity.OrderGoodsEntity;
 import aston.red.orderservice.repository.OrdersGoodsRepository;
+import aston.red.orderservice.dto.OrdersGoodsShortsDto;
+import aston.red.orderservice.feign.GoodsFeign;
+import aston.red.orderservice.mapper.GoodMapper;
+import aston.red.orderservice.repository.OrderRepository;
 import aston.red.orderservice.service.OrdersGoodsService;
+import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
 @Data
 @Service
+@AllArgsConstructor
 public class OrdersGoodsServiceImpl implements OrdersGoodsService {
-    OrdersGoodsRepository repository;
+  private final OrdersGoodsRepository repository;
 
-    public OrdersGoodsServiceImpl(OrdersGoodsRepository repository) {
-        this.repository = repository;
-    }
+  private final OrderRepository orderRepository;
+
+  private final GoodMapper goodMapper;
+
+  private final GoodsFeign goodsFeign;
 
     @Override
     public void saveGoods(Order order, OrderGoodsDto orderGoodsDto) {
@@ -32,4 +41,19 @@ public class OrdersGoodsServiceImpl implements OrdersGoodsService {
             repository.save(orderGoods);
         }
     }
+
+
+  public void patchOrdersGoodsShortsDtoByOrderId(Long orderId) {
+    List<OrderGoodsEntity> orderGoodsEntityList = repository.findOrderGoodsEntitiesByOrderId(
+        orderId);
+    Long shopId = orderRepository.findShopIdById(orderId);
+    List<OrdersGoodsShortsDto> goodsShortsDtoList = orderGoodsEntityList.stream()
+        .map(goodMapper::toOrdersGoodsShortsDto).peek(entitydto -> entitydto.setShopId(shopId))
+        .toList();
+
+    goodsFeign.patchOrdersGoodsShorts(shopId, goodsShortsDtoList);
+
+
+  }
+
 }
