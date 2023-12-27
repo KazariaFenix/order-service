@@ -22,11 +22,11 @@ import org.springframework.stereotype.Service;
 public class OrdersGoodsServiceImpl implements OrdersGoodsService {
     OrdersGoodsRepository repository;
 
-  private final OrderRepository orderRepository;
+  OrderRepository orderRepository;
 
-  private final GoodMapper goodMapper;
+  GoodMapper goodMapper;
 
-  private final GoodsFeign goodsFeign;
+  GoodsFeign goodsFeign;
 
     public OrdersGoodsServiceImpl(OrdersGoodsRepository repository) {
         this.repository = repository;
