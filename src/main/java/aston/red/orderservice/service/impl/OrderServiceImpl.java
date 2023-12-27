@@ -28,7 +28,6 @@ public class OrderServiceImpl implements OrderService {
     private final OrdersGoodsService ordersGoodsService;
 
     @Override
-
     public void postDeliveryOrder(long orderId) {
         Order order = repository.findById(orderId).orElseThrow(
                 () -> new OrderNotFoundException(String.valueOf(orderId)));
@@ -36,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
         orderDto.setShop(storeFeign.getById(order.getShopId()));
         deliveryFeign.getOrderDto(orderDto);
+        repository.setPaid(orderId);
     }
 
     @Override
@@ -61,5 +61,10 @@ public class OrderServiceImpl implements OrderService {
         ordersGoodsService.saveGoods(order, orderGoodsDto);
 
         return new OrderPreparedToPayDto(order.getId(), order.getTotal());
+    }
+
+    @Override
+    public void confirmationDelivery(long orderId) {
+        repository.setDelivery(orderId);
     }
 }

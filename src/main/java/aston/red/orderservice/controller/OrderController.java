@@ -16,15 +16,18 @@ public class OrderController {
     private final OrdersGoodsService goodsService;
 
     @PostMapping("/{orderId}")
-    public void payedOrder(@RequestParam Long orderId) {
-      orderService.postDeliveryOrder(orderId);
+    public void payedOrder(@PathVariable long orderId) {
+        orderService.postDeliveryOrder(orderId);
         goodsService.patchOrdersGoodsShortsDtoByOrderId(orderId);
     }
 
-  @PostMapping(produces = "application/json", consumes = "application/json")
-  public OrderPreparedToPayDto processOrder(@RequestBody OrderGoodsDto orderGoodsDto) {
-    return orderService.processOrder(orderGoodsDto);
-  }
+    @PatchMapping("/delivery/{orderId}")
+    public void confirmationDelivery(@PathVariable long orderId) {
+        orderService.confirmationDelivery(orderId);
+    }
 
-
+    @PostMapping(produces = "application/json", consumes = "application/json")
+    public OrderPreparedToPayDto processOrder(@RequestBody OrderGoodsDto orderGoodsDto) {
+        return orderService.processOrder(orderGoodsDto);
+    }
 }
