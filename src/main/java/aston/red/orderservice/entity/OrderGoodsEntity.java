@@ -27,7 +27,7 @@ public class OrderGoodsEntity {
   private String goodName;
 
   @Column(name = "quantity")
-  private Long quantity;
+  private Integer quantity;
   
   @ManyToOne
   @JoinColumn(name = "order_id")

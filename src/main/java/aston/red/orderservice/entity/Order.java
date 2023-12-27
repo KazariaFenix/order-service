@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
@@ -33,7 +34,7 @@ public class Order {
   private boolean paid;
 
   @Column(name = "total")
-  private Long total;
+  private BigDecimal total;
 
   @Column(name = "shop_id", nullable = false)
   private Long shopId;
