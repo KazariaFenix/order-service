@@ -3,6 +3,7 @@ package aston.red.orderservice.controller;
 import aston.red.orderservice.dto.OrderGoodsDto;
 import aston.red.orderservice.dto.OrderPreparedToPayDto;
 import aston.red.orderservice.service.OrderService;
+import aston.red.orderservice.service.OrdersGoodsService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,18 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrdersGoodsService goodsService;
 
     @PostMapping("/{orderId}")
-    public void payedOrder(@PathVariable Long orderId) {
-        orderService.postDeliveryOrder(orderId);
+    public void payedOrder(@RequestParam Long orderId) {
+      orderService.postDeliveryOrder(orderId);
+        goodsService.getOrdersGoodsShortsDtoByOrderId(orderId);
     }
 
-    @PostMapping(produces = "application/json", consumes = "application/json")
-    public OrderPreparedToPayDto processOrder(@RequestBody OrderGoodsDto orderGoodsDto) {
-        return orderService.processOrder(orderGoodsDto);
-    }
+  @PostMapping(produces = "application/json", consumes = "application/json")
+  public OrderPreparedToPayDto processOrder(@RequestBody OrderGoodsDto orderGoodsDto) {
+    return orderService.processOrder(orderGoodsDto);
+  }
+
+
 }
