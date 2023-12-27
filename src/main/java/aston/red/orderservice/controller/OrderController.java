@@ -18,7 +18,7 @@ public class OrderController {
     @PostMapping("/{orderId}")
     public void payedOrder(@RequestParam Long orderId) {
       orderService.postDeliveryOrder(orderId);
-        goodsService.getOrdersGoodsShortsDtoByOrderId(orderId);
+        goodsService.patchOrdersGoodsShortsDtoByOrderId(orderId);
     }
 
   @PostMapping(produces = "application/json", consumes = "application/json")

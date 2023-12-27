@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface GoodsFeign {
 
   @PatchMapping("/{storeId}")
-  void getOrdersGoodsShorts(@PathVariable Long storeId,
+  void patchOrdersGoodsShorts(@PathVariable Long storeId,
       @RequestBody List<OrdersGoodsShortsDto> ordersGoodsShortsDtoList);
 
 }
