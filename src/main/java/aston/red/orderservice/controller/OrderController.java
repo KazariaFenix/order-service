@@ -15,7 +15,7 @@ public class OrderController {
     private final OrderService orderService;
     private final OrdersGoodsService goodsService;
 
-    @PostMapping("/{orderId}")
+    @PatchMapping("/{orderId}")
     public void payedOrder(@PathVariable long orderId) {
         orderService.postDeliveryOrder(orderId);
         goodsService.patchOrdersGoodsShortsDtoByOrderId(orderId);
