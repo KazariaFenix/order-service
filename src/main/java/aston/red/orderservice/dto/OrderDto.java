@@ -10,8 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class OrderDto {
-    private Long id;
-    private String tgChatIdClient;
+    private long id;
+    private long tgChatIdClient;
     private String addressClient;
     private List<GoodDto> goods;
     private StoreDto shop;
